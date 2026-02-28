@@ -5,6 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>AllianzaAI — Admin Dashboard</title>
+
+    <!-- Authentication Check -->
+    <script>
+        if (localStorage.getItem('allianza_admin_logged_in') !== 'true') {
+            window.location.replace('login.html');
+        }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -112,7 +120,8 @@
                         <div class="user-role">Super Admin</div>
                     </div>
                 </div>
-                <button class="logout-btn">
+                <button class="logout-btn"
+                    onclick="localStorage.removeItem('allianza_admin_logged_in'); window.location.replace('login.html');">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                         <polyline points="16 17 21 12 16 7" />
