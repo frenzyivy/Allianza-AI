@@ -1,0 +1,4 @@
+# Netlify Redirects
+# This makes admin.allianzaai.com serve the dashboard
+
+https://admin.allianzaai.com/* /dashboard.html 200

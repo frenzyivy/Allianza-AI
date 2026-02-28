@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>AllianzaAI — Admin Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo"><a href="https://allianzaai.com" style="text-decoration:none"><span
+                        class="logo-main">Allianza</span><span class="logo-ai">AI</span></a></div>
+            <div class="sidebar-divider"></div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-page="overview">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Overview
+                </div>
+                <div class="nav-item" data-page="clients" data-sub="clients-sub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                    Clients
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width:12px;height:12px;margin-left:auto" id="clients-arrow">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+                <div class="nav-sub sub-group" id="clients-sub">
+                    <div class="nav-item" data-page="clients" data-tab="tab-all">All Clients</div>
+                    <div class="nav-item" data-page="clients" data-tab="tab-pipeline">Onboarding Pipeline</div>
+                    <div class="nav-item" data-page="clients" data-tab="tab-detail">Client Detail</div>
+                </div>
+                <div class="nav-item" data-page="ai-monitor">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="3" width="20" height="14" rx="2" />
+                        <line x1="8" y1="21" x2="16" y2="21" />
+                        <line x1="12" y1="17" x2="12" y2="21" />
+                    </svg>
+                    AI Monitor
+                </div>
+                <div class="nav-item" data-page="financials" data-sub="fin-sub">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="1" x2="12" y2="23" />
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    </svg>
+                    Financials
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        style="width:12px;height:12px;margin-left:auto" id="fin-arrow">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+                <div class="nav-sub sub-group" id="fin-sub">
+                    <div class="nav-item" data-page="financials" data-tab="tab-pl">P&amp;L Dashboard</div>
+                    <div class="nav-item" data-page="financials" data-tab="tab-api-costs">API Costs</div>
+                    <div class="nav-item" data-page="financials" data-tab="tab-trial-costs">Trial Costs</div>
+                    <div class="nav-item" data-page="financials" data-tab="tab-revenue">Revenue</div>
+                </div>
+                <div class="nav-item" data-page="api-connections">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                    </svg>
+                    API Connections
+                </div>
+                <div class="nav-item" data-page="my-team">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                    My Team
+                </div>
+                <div class="nav-item" data-page="alerts">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                    </svg>
+                    Alerts <span class="nav-badge">5</span>
+                </div>
+                <div class="nav-item" data-page="settings">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="3" />
+                        <path
+                            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                    </svg>
+                    Settings
+                </div>
+            </nav>
+            <div class="sidebar-bottom">
+                <div class="sidebar-user">
+                    <div class="user-avatar">YO</div>
+                    <div>
+                        <div class="user-name">Komal (You)</div>
+                        <div class="user-role">Super Admin</div>
+                    </div>
+                </div>
+                <button class="logout-btn">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    Logout
+                </button>
+            </div>
+        </aside>
+
+        <!-- MAIN AREA -->
+        <div class="main-area">
+            <!-- NAVBAR -->
+            <header class="navbar">
+                <div class="navbar-title" id="navTitle">Overview</div>
+                <div class="navbar-search">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                    <input type="text" placeholder="Search clients, AI instances…" />
+                </div>
+                <div class="navbar-actions">
+                    <button class="icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                        </svg><span class="notif-badge"></span></button>
+                    <button class="theme-btn" id="themeBtn" title="Toggle theme">
+                        <div class="theme-thumb" id="themeThumb"><svg id="themeIcon" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="3" />
+                                <line x1="12" y1="21" x2="12" y2="23" />
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                <line x1="1" y1="12" x2="3" y2="12" />
+                                <line x1="21" y1="12" x2="23" y2="12" />
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                            </svg></div>
+                    </button>
+                    <div class="navbar-avatar">KO</div>
+                </div>
+            </header>
+
+            <!-- CONTENT -->
+            <main class="content">
+
+                <!-- PAGE: OVERVIEW -->
+                <div class="page active" id="page-overview">
+                    <div class="kpi-grid" id="overviewKPIs"></div>
+                    <div class="row-2">
+                        <div class="card">
+                            <div class="card-title">Query Volume — Last 30 Days</div>
+                            <div class="chart-wrap" style="height:220px"><canvas id="queryChart"></canvas></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Client Health Summary</div>
+                            <div style="display:flex;gap:1rem;align-items:center">
+                                <div style="width:130px;height:130px;flex-shrink:0"><canvas id="healthDonut"></canvas>
+                                </div>
+                                <div class="legend" id="healthLegend"></div>
+                            </div>
+                            <div class="health-rows" id="healthRows"></div>
+                        </div>
+                    </div>
+                    <div class="row-3">
+                        <div class="card">
+                            <div class="card-title">Recent Signups</div>
+                            <div class="list-rows" id="recentSignups"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Active Trials</div>
+                            <div id="activeTrials"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Alerts Feed</div>
+                            <div class="alert-rows" id="alertsFeed"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: CLIENTS -->
+                <div class="page" id="page-clients">
+                    <div class="tab-bar">
+                        <button class="tab-btn active" data-tab="tab-all">All Clients</button>
+                        <button class="tab-btn" data-tab="tab-pipeline">Onboarding Pipeline</button>
+                        <button class="tab-btn" data-tab="tab-detail">Client Detail</button>
+                    </div>
+                    <!-- All Clients -->
+                    <div class="tab-panel active" id="tab-all">
+                        <div class="table-controls">
+                            <div class="table-search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <circle cx="11" cy="11" r="8" />
+                                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                                </svg><input type="text" placeholder="Search clients…" id="clientSearch" /></div>
+                            <select class="filter-select" id="clientFilter">
+                                <option value="">All Plans</option>
+                                <option>Starter</option>
+                                <option>Pro</option>
+                                <option>Scale</option>
+                            </select>
+                            <select class="filter-select">
+                                <option value="">All Status</option>
+                                <option>Active</option>
+                                <option>Trial</option>
+                                <option>Churned</option>
+                            </select>
+                        </div>
+                        <div class="table-wrap">
+                            <table id="clientsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Plan</th>
+                                        <th>Status</th>
+                                        <th>Properties</th>
+                                        <th>Queries/Mo</th>
+                                        <th>API Cost</th>
+                                        <th>Revenue</th>
+                                        <th>Margin %</th>
+                                        <th>Health</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clientsTbody"></tbody>
+                            </table>
+                        </div>
+                        <div class="pagination" id="clientsPagination"></div>
+                    </div>
+                    <!-- Pipeline -->
+                    <div class="tab-panel" id="tab-pipeline">
+                        <div class="kanban" id="kanbanBoard"></div>
+                    </div>
+                    <!-- Client Detail -->
+                    <div class="tab-panel" id="tab-detail">
+                        <div class="client-detail" id="clientDetail"></div>
+                    </div>
+                </div>
+
+                <!-- PAGE: AI MONITOR -->
+                <div class="page" id="page-ai-monitor">
+                    <div class="kpi-grid" id="aiKPIs"></div>
+                    <div class="ai-grid" id="aiGrid"></div>
+                    <div class="card" style="margin-top:1rem">
+                        <div class="live-feed-bar">
+                            <div class="card-title" style="margin:0">Live Conversation Feed</div>
+                            <div
+                                style="display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--text-muted)">
+                                <span>Live Feed</span>
+                                <button class="toggle-switch" id="liveFeedToggle"></button>
+                            </div>
+                        </div>
+                        <div class="live-feed-rows" id="liveFeedRows">
+                            <div style="text-align:center;padding:2rem;color:var(--text-muted);font-size:.85rem">Enable
+                                live feed to see real-time conversations</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: FINANCIALS -->
+                <div class="page" id="page-financials">
+                    <div class="tab-bar">
+                        <button class="tab-btn active" data-tab="tab-pl">P&amp;L Dashboard</button>
+                        <button class="tab-btn" data-tab="tab-api-costs">API Costs</button>
+                        <button class="tab-btn" data-tab="tab-trial-costs">Trial Costs</button>
+                        <button class="tab-btn" data-tab="tab-revenue">Revenue</button>
+                    </div>
+                    <div class="tab-panel active" id="tab-pl">
+                        <div class="pl-card" id="plCard"></div>
+                        <div class="row-2col">
+                            <div class="card">
+                                <div class="card-title">Month-over-Month P&amp;L<select
+                                        style="font-size:.78rem;padding:4px 8px;margin-left:8px" id="monthSelect">
+                                        <option>March 2025</option>
+                                        <option>February 2025</option>
+                                        <option>January 2025</option>
+                                    </select></div>
+                                <div class="chart-wrap" style="height:220px"><canvas id="momChart"></canvas></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Revenue vs Costs Trend</div>
+                                <div class="chart-wrap" style="height:220px"><canvas id="revCostChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-api-costs">
+                        <div class="kpi-grid" id="apiCostKPIs"></div>
+                        <div class="table-wrap" style="margin-bottom:1.5rem">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Plan</th>
+                                        <th>Chat Tokens</th>
+                                        <th>Call Tokens</th>
+                                        <th>Total Tokens</th>
+                                        <th>Chat Cost</th>
+                                        <th>Call Cost</th>
+                                        <th>Total Cost</th>
+                                        <th>Subscription</th>
+                                        <th>Margin</th>
+                                        <th>Margin %</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="apiCostsTbody"></tbody>
+                            </table>
+                        </div>
+                        <div class="row-2col">
+                            <div class="card">
+                                <div class="card-title">Cost by Client (6 months)</div>
+                                <div class="chart-wrap" style="height:220px"><canvas id="clientCostChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Cost Per Query Trend</div>
+                                <div class="chart-wrap" style="height:220px"><canvas id="cpqChart"></canvas></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-trial-costs">
+                        <div class="kpi-grid" id="trialCostKPIs"></div>
+                        <div class="table-wrap" style="margin-bottom:1.5rem">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Trial Start</th>
+                                        <th>Days Left</th>
+                                        <th>API Cost</th>
+                                        <th>Infra Cost</th>
+                                        <th>Total Cost</th>
+                                        <th>Status</th>
+                                        <th>Conversion</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="trialCostsTbody"></tbody>
+                            </table>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">Trial ROI Summary</div>
+                            <div id="trialRoiSummary"
+                                style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:.5rem">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-panel" id="tab-revenue">
+                        <div class="kpi-grid" id="revenueKPIs"></div>
+                        <div class="row-2col">
+                            <div class="card">
+                                <div class="card-title">MRR Growth (12 months)</div>
+                                <div class="chart-wrap" style="height:220px"><canvas id="mrrChart"></canvas></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Revenue by Plan</div>
+                                <div style="display:flex;gap:1rem;align-items:center">
+                                    <div style="width:150px;height:150px;flex-shrink:0"><canvas id="planDonut"></canvas>
+                                    </div>
+                                    <div class="legend" id="planLegend"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row-2col">
+                            <div class="card">
+                                <div class="card-title">Upcoming Renewals (30 days)</div>
+                                <div class="list-rows" id="renewalsList"></div>
+                            </div>
+                            <div class="card">
+                                <div class="card-title">Failed Payments</div>
+                                <div class="list-rows" id="failedPayments"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: API CONNECTIONS -->
+                <div class="page" id="page-api-connections">
+                    <div class="kpi-grid" id="apiConnKPIs"></div>
+                    <div class="table-wrap row-full">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Client</th>
+                                    <th>Airbnb</th>
+                                    <th>WhatsApp</th>
+                                    <th>SMS</th>
+                                    <th>Guesty</th>
+                                    <th>Hostaway</th>
+                                    <th>Twilio</th>
+                                    <th>Last Sync</th>
+                                    <th>Errors</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apiConnTbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="row-2col">
+                        <div class="card">
+                            <div class="card-title">Integration Error Log</div>
+                            <div class="error-log" id="errorLog"></div>
+                        </div>
+                        <div class="card">
+                            <div class="card-title">API Key Expiry</div>
+                            <div class="expiry-grid" id="expiryGrid"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: MY TEAM -->
+                <div class="page" id="page-my-team">
+                    <div class="kpi-grid" id="teamKPIs"></div>
+                    <div class="team-grid" id="teamGrid"></div>
+                    <div class="card">
+                        <div class="card-title">Open Escalations</div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Client</th>
+                                        <th>Issue</th>
+                                        <th>Assigned To</th>
+                                        <th>Time Open</th>
+                                        <th>Priority</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="escalationsTbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAGE: ALERTS -->
+                <div class="page" id="page-alerts">
+                    <div class="alert-filter" id="alertFilter">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="critical">🔴 Critical</button>
+                        <button class="filter-btn" data-filter="warning">🟡 Warning</button>
+                        <button class="filter-btn" data-filter="info">🟢 Info</button>
+                        <button class="filter-btn" data-filter="unread">Unread</button>
+                    </div>
+                    <div class="alert-list" id="alertList"></div>
+                </div>
+
+                <!-- PAGE: SETTINGS -->
+                <div class="page" id="page-settings">
+                    <div class="settings-sections" id="settingsSections"></div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+    <script src="dashboard-data.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>

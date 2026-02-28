@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AllianzaAI — AI Guest Experience for Airbnb Hosts</title>
+  <meta name="description"
+    content="AllianzaAI is the AI guest experience layer for Airbnb hosts. Our AI Chat Bot and Calling Agent handle all guest communication 24/7 so you never miss a message." />
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230a0a0f' rx='14'/><text y='75' x='16' font-size='75' fill='%23e63030' font-family='serif' font-weight='bold'>A</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,600;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Grain Overlay -->
+  <div class="grain-overlay"></div>
+
+  <!-- ===================== NAV ===================== -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-main">Allianza</span><span class="logo-ai">AI</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#demo">Live Demo</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+        class="btn btn-primary nav-cta interactive">14-Day Free Trial</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#demo">Live Demo</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+        class="btn btn-primary">14-Day Free Trial</a>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <!-- Animated blobs -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <div class="blob blob-4"></div>
+
+    <!-- Grid overlay -->
+    <div class="grid-overlay"></div>
+
+    <div class="hero-inner">
+      <div class="hero-text reveal">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          AI-Powered · Available 24/7
+        </div>
+        <h1 class="hero-headline">
+          You sleep.<br>
+          Your guests are<br>
+          <em class="accent-word">taken care of.</em>
+        </h1>
+        <p class="hero-sub">
+          AllianzaAI is the guest experience layer that sits between your Airbnb and your inbox. Our AI handles every
+          question, every hour — so you don't have to.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+            class="btn btn-primary btn-lg interactive">Book a Free Call</a>
+          <a href="#demo" class="btn btn-ghost btn-lg interactive">See Live Demo</a>
+        </div>
+        <p class="hero-footnote">No credit card required · Setup in 48 hours</p>
+      </div>
+
+      <div class="hero-visual reveal">
+        <!-- Phone mockup -->
+        <div class="phone-frame" id="phoneFrame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-header">
+              <div class="phone-avatar">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="12" fill="#e63030" />
+                  <text x="12" y="16" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif"
+                    font-weight="bold">AI</text>
+                </svg>
+              </div>
+              <div>
+                <div class="phone-name">AllianzaAI</div>
+                <div class="phone-status">
+                  <span class="status-dot"></span> Online
+                </div>
+              </div>
+            </div>
+            <div class="phone-messages" id="phoneMessages">
+              <!-- Messages injected by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating metric badges -->
+        <div class="metric-badge badge-tl">
+          <div class="metric-value">98%</div>
+          <div class="metric-label">Response Rate</div>
+        </div>
+        <div class="metric-badge badge-br">
+          <div class="metric-icon">⚡</div>
+          <div>
+            <div class="metric-value">&lt;30s</div>
+            <div class="metric-label">Avg. Response</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TRUST BAR ===================== -->
+  <section class="trust-bar reveal">
+    <p class="trust-label">Works seamlessly with platforms you already use</p>
+    <div class="trust-logos">
+      <div class="trust-logo">
+        <svg width="90" height="28" viewBox="0 0 90 28" fill="none">
+          <text y="20" fill="#FF5A5F" font-family="sans-serif" font-weight="800" font-size="18">airbnb</text>
+        </svg>
+      </div>
+      <div class="trust-logo">
+        <svg width="60" height="28" viewBox="0 0 60 28">
+          <rect x="0" y="4" width="55" height="20" rx="4" fill="#006CE4" />
+          <text x="5" y="19" fill="white" font-family="sans-serif" font-weight="700" font-size="12">VRBO</text>
+        </svg>
+      </div>
+      <div class="trust-logo">
+        <svg width="110" height="28" viewBox="0 0 110 28">
+          <text y="20" fill="#25D366" font-family="sans-serif" font-weight="700" font-size="16">WhatsApp</text>
+        </svg>
+      </div>
+      <div class="trust-logo">
+        <svg width="70" height="28" viewBox="0 0 70 28">
+          <text y="20" fill="#0084FF" font-family="sans-serif" font-weight="700" font-size="16">Messenger</text>
+        </svg>
+      </div>
+      <div class="trust-logo">
+        <svg width="50" height="28" viewBox="0 0 50 28">
+          <text y="20" fill="#4285F4" font-family="sans-serif" font-weight="700" font-size="16">Gmail</text>
+        </svg>
+      </div>
+    </div>
+    <div class="trust-rating">
+      <div class="stars">★★★★★</div>
+      <span>4.9 / 5 from 200+ hosts</span>
+    </div>
+  </section>
+
+  <!-- ===================== PAIN POINTS ===================== -->
+  <section class="section pain-section" id="pain">
+    <div class="container">
+      <div class="section-label reveal">The Problem</div>
+      <h2 class="section-title reveal">Your inbox is a second job.<br>It doesn't have to be.</h2>
+      <p class="section-sub reveal">Hosts with just 2–3 properties spend 3–5 hours daily on repetitive guest messages.
+        That's not a hosting problem — that's a scaling problem.</p>
+
+      <div class="pain-grid">
+        <div class="pain-card reveal interactive">
+          <div class="pain-emoji">😩</div>
+          <h3>3am "what's the WiFi?" texts</h3>
+          <p>You're jolted awake by a ping from a guest who's been awake for 10 minutes max. They can't wait. You can't
+            sleep.</p>
+          <blockquote class="pain-quote">"It says WR1-2024 on your router but it's not working…"</blockquote>
+        </div>
+        <div class="pain-card reveal interactive">
+          <div class="pain-emoji">🔁</div>
+          <h3>The same 8 questions, every booking</h3>
+          <p>Check-in time. Parking. Early checkout. You've answered these a thousand times. Yet here you are, typing
+            again.</p>
+          <blockquote class="pain-quote">"Hi! Quick question — what time is check-out again?"</blockquote>
+        </div>
+        <div class="pain-card reveal interactive">
+          <div class="pain-emoji">📉</div>
+          <h3>Slow replies cost you reviews</h3>
+          <p>Airbnb's algorithm penalizes delayed responses. A slow reply equals a lower ranking, fewer bookings, and
+            lost income.</p>
+          <blockquote class="pain-quote">"Response time: within a few hours — maybe could be faster"</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOW IT WORKS ===================== -->
+  <section class="section hiw-section" id="how-it-works">
+    <div class="container">
+      <div class="section-label reveal">How It Works</div>
+      <h2 class="section-title reveal">Live in 3 steps.<br>Silent ever after.</h2>
+      <p class="section-sub reveal">AllianzaAI slots into your existing workflow. No technical knowledge required.</p>
+
+      <div class="hiw-steps">
+        <div class="hiw-step reveal">
+          <div class="step-number interactive">01</div>
+          <div class="step-line"></div>
+          <h3>Connect your property</h3>
+          <p>Link your Airbnb listing and fill in your property details — house rules, check-in info, WiFi, parking, and
+            FAQs.</p>
+        </div>
+        <div class="hiw-step reveal">
+          <div class="step-number interactive">02</div>
+          <div class="step-line"></div>
+          <h3>AllianzaAI learns your voice</h3>
+          <p>Our AI trains on your property data and past messages to respond exactly how you would — warm, specific,
+            and on-brand.</p>
+        </div>
+        <div class="hiw-step reveal">
+          <div class="step-number interactive">03</div>
+          <div class="step-line last"></div>
+          <h3>You go offline. It takes over.</h3>
+          <p>Every guest message is handled instantly. You get a daily summary. You only intervene when it matters.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== LIVE DEMO ===================== -->
+  <section class="section demo-section" id="demo">
+    <div class="container">
+      <div class="section-label reveal">Try It Now</div>
+      <h2 class="section-title reveal">See AllianzaAI in action.<br>Type anything.</h2>
+      <p class="section-sub reveal">Ask a question just like a real guest would. Our AI responds the way it would on
+        your actual listing.</p>
+
+      <div class="demo-widget reveal">
+        <!-- macOS window frame -->
+        <div class="macos-frame">
+          <div class="macos-bar">
+            <div class="macos-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="macos-title">AllianzaAI — Guest Chat Demo</div>
+            <div class="macos-right"></div>
+          </div>
+          <div class="demo-content">
+            <!-- Left: Chat -->
+            <div class="demo-chat-col">
+              <div class="demo-chat-header">
+                <div class="demo-ai-avatar">AI</div>
+                <div>
+                  <div class="demo-ai-name">AllianzaAI Assistant</div>
+                  <div class="demo-ai-status"><span class="status-dot"></span> Active on your listing</div>
+                </div>
+              </div>
+              <div class="demo-messages" id="demoMessages">
+                <div class="demo-msg ai-msg">
+                  <div class="msg-bubble">👋 Hi! I'm the AI assistant for this property. Ask me anything — check-in
+                    times, parking, WiFi, pet policy, or local tips!</div>
+                </div>
+              </div>
+              <div class="demo-typing-indicator" id="demoTyping" style="display:none;">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="demo-input-row">
+                <input type="text" class="demo-input" id="demoInput"
+                  placeholder="Ask as a guest… e.g. 'What's the WiFi password?'" />
+                <button class="demo-send interactive" id="demoSend" aria-label="Send message">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </button>
+              </div>
+              <div class="demo-chips">
+                <button class="chip interactive" data-msg="What time is check-in?">⏰ Check-in time</button>
+                <button class="chip interactive" data-msg="What's the WiFi password?">📶 WiFi password</button>
+                <button class="chip interactive" data-msg="Is parking available?">🚗 Parking</button>
+                <button class="chip interactive" data-msg="Are pets allowed?">🐾 Pet policy</button>
+                <button class="chip interactive" data-msg="What are the best restaurants nearby?">🍽️
+                  Restaurants</button>
+                <button class="chip interactive" data-msg="Can I check out late?">🕐 Late checkout</button>
+                <button class="chip interactive" data-msg="What time is check-out?">🚪 Check-out time</button>
+              </div>
+            </div>
+
+            <!-- Right: Stats -->
+            <div class="demo-stats-col">
+              <h4 class="stats-title">AI Performance</h4>
+              <div class="stat-item">
+                <div class="stat-circle">
+                  <svg viewBox="0 0 36 36">
+                    <path class="stat-bg" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#2a1a1a"
+                      stroke-width="3" fill="none" />
+                    <path class="stat-fill" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#e63030"
+                      stroke-width="3" fill="none" stroke-dasharray="97, 100" stroke-linecap="round" />
+                  </svg>
+                  <span class="stat-pct">97%</span>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-name">Resolution Rate</div>
+                  <div class="stat-desc">Guests resolved without host</div>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-circle">
+                  <svg viewBox="0 0 36 36">
+                    <path class="stat-bg" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#2a1a1a"
+                      stroke-width="3" fill="none" />
+                    <path class="stat-fill" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#e63030"
+                      stroke-width="3" fill="none" stroke-dasharray="24, 100" stroke-linecap="round" />
+                  </svg>
+                  <span class="stat-pct secondary">24s</span>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-name">Avg Response Time</div>
+                  <div class="stat-desc">Faster than any human host</div>
+                </div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-circle">
+                  <svg viewBox="0 0 36 36">
+                    <path class="stat-bg" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#2a1a1a"
+                      stroke-width="3" fill="none" />
+                    <path class="stat-fill" d="M18 2 a16 16 0 0 1 0 32 a16 16 0 0 1 0 -32" stroke="#e63030"
+                      stroke-width="3" fill="none" stroke-dasharray="4.8, 5" stroke-linecap="round" />
+                  </svg>
+                  <span class="stat-pct secondary">4.9★</span>
+                </div>
+                <div class="stat-info">
+                  <div class="stat-name">Avg Review Score</div>
+                  <div class="stat-desc">Hosts using AllianzaAI</div>
+                </div>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-topics">
+                <div class="stat-topic-label">Top handled topics</div>
+                <div class="topic-tags">
+                  <span class="topic-tag">Check-in info</span>
+                  <span class="topic-tag">WiFi</span>
+                  <span class="topic-tag">Checkout</span>
+                  <span class="topic-tag">Parking</span>
+                  <span class="topic-tag">House rules</span>
+                  <span class="topic-tag">Local tips</span>
+                  <span class="topic-tag">Amenities</span>
+                  <span class="topic-tag">Pet policy</span>
+                </div>
+              </div>
+              <div class="stat-live-counter">
+                <span class="live-dot"></span>
+                <span id="liveCount">1,847</span> messages handled today
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES ===================== -->
+  <section class="section features-section" id="features">
+    <div class="container">
+      <div class="section-label reveal">Core Features</div>
+      <h2 class="section-title reveal">Two AIs. One mission.<br>Zero messages missed.</h2>
+      <p class="section-sub reveal">AllianzaAI gives you two intelligent agents working around the clock, each built for
+        a different kind of guest interaction.</p>
+
+      <div class="features-grid">
+        <!-- Chat Bot Card -->
+        <div class="feature-card reveal interactive">
+          <div class="feature-card-inner">
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63030" stroke-width="2">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+            </div>
+            <h3>AI Chat Bot</h3>
+            <p class="feature-desc">Text-first guest communication that responds in seconds, across WhatsApp, SMS,
+              Airbnb inbox, and email.</p>
+            <ul class="feature-list">
+              <li>Handles 97% of questions without escalation</li>
+              <li>Responds in the host's tone and style</li>
+              <li>Multilingual support (35+ languages)</li>
+              <li>Smart escalation when needed</li>
+              <li>Custom house rules + local tips</li>
+              <li>Full conversation history dashboard</li>
+            </ul>
+          </div>
+          <div class="feature-preview chat-preview">
+            <div class="mini-chat">
+              <div class="mini-msg guest">What's the WiFi password?</div>
+              <div class="mini-msg ai">The WiFi is: <strong>CozyStay2024</strong> — connect to the "CasaVerde_5G"
+                network. Let me know if it doesn't work! 😊</div>
+              <div class="mini-msg guest">Can we park on the street?</div>
+              <div class="mini-msg ai">Yes! Free street parking right in front. No permit needed. Space for 2 cars.
+              </div>
+            </div>
+          </div>
+          <div class="feature-sweep"></div>
+        </div>
+
+        <!-- Calling Agent Card -->
+        <div class="feature-card reveal interactive">
+          <div class="feature-card-inner">
+            <div class="feature-icon-wrap">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e63030" stroke-width="2">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L7.91 9.24a16 16 0 0 0 6.29 6.29l1.1-1.1a2 2 0 0 1 2.11-.45c.91.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z">
+                </path>
+              </svg>
+            </div>
+            <h3>AI Calling Agent</h3>
+            <p class="feature-desc">A natural-sounding voice AI that answers calls, handles emergencies, and calls
+              guests with updates — all on your behalf.</p>
+            <ul class="feature-list">
+              <li>Natural voice in English, Spanish + more</li>
+              <li>Handles emergency calls intelligently</li>
+              <li>Outbound calls for check-in reminders</li>
+              <li>Call recording + transcription</li>
+              <li>Escalates complex calls to you instantly</li>
+              <li>Works with any US phone number</li>
+            </ul>
+          </div>
+          <div class="feature-preview call-preview">
+            <div class="call-ui">
+              <div class="call-status">
+                <div class="call-wave">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <div class="call-label">AI handling call…</div>
+              </div>
+              <div class="call-transcript">
+                <div class="transcript-line ai-line"><span class="tsp-label">AI</span>"Hello! I'm the assistant for this
+                  property. How can I help you today?"</div>
+                <div class="transcript-line guest-line"><span class="tsp-label">Guest</span>"We locked ourselves out…"
+                </div>
+                <div class="transcript-line ai-line"><span class="tsp-label">AI</span>"No problem — the lockbox code is
+                  4829. I'll also text it to you right now."</div>
+              </div>
+            </div>
+          </div>
+          <div class="feature-sweep"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== BEFORE / AFTER ===================== -->
+  <section class="section ba-section" id="before-after">
+    <div class="container">
+      <div class="section-label reveal">Before & After</div>
+      <h2 class="section-title reveal">What hosting feels like<br>before and after AllianzaAI.</h2>
+
+      <div class="ba-grid">
+        <!-- Before -->
+        <div class="ba-col ba-before reveal">
+          <div class="ba-col-header">
+            <span class="ba-label before-label">Before</span>
+          </div>
+          <div class="ba-items">
+            <div class="ba-item">😴 Woken up at 3am by a WiFi question</div>
+            <div class="ba-item">📵 Missed a message → bad review</div>
+            <div class="ba-item">🔄 Copying the same check-in message for every guest</div>
+            <div class="ba-item">⏳ Hours lost to inbox management daily</div>
+            <div class="ba-item">😡 Dreading every new booking notification</div>
+            <div class="ba-item">📉 Airbnb ranking drops due to response time</div>
+          </div>
+        </div>
+
+        <!-- VS divider -->
+        <div class="ba-vs reveal">
+          <div class="vs-line"></div>
+          <div class="vs-circle">VS</div>
+          <div class="vs-line"></div>
+        </div>
+
+        <!-- After -->
+        <div class="ba-col ba-after reveal">
+          <div class="ba-col-header">
+            <span class="ba-label after-label">After</span>
+          </div>
+          <div class="ba-items">
+            <div class="ba-item">😴 Sleep through the night — AI handles it</div>
+            <div class="ba-item">✅ Every message answered in &lt;30 seconds</div>
+            <div class="ba-item">🤖 AI personalizes each response automatically</div>
+            <div class="ba-item">☕ Check your 5-minute daily digest with coffee</div>
+            <div class="ba-item">🎉 New booking = excitement, not dread</div>
+            <div class="ba-item">📈 Response rate hits 100% → ranking improves</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="section testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-label reveal">Testimonials</div>
+      <h2 class="section-title reveal">Hosts who sleep better<br>share their stories.</h2>
+
+      <div class="testimonials-grid">
+        <div class="testi-card reveal interactive">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">I was spending 4 hours a day on messages for my 3 Airbnbs. Now AllianzaAI handles
+            everything. I literally forgot what a guest message looked like for two weeks.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">MR</div>
+            <div>
+              <div class="testi-name">Maria R.</div>
+              <div class="testi-role">3 properties · Phoenix, AZ</div>
+            </div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-badge">saved 28 hrs/week</div>
+        </div>
+
+        <div class="testi-card reveal interactive">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">My Superhost status was at risk because of slow response times. Three months with
+            AllianzaAI and I'm back to 100% response rate and my ranking is back at the top.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">JT</div>
+            <div>
+              <div class="testi-name">James T.</div>
+              <div class="testi-role">5 properties · Austin, TX</div>
+            </div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-badge">100% response rate</div>
+        </div>
+
+        <div class="testi-card reveal interactive">
+          <div class="testi-quote-mark">"</div>
+          <p class="testi-text">My guests keep leaving comments about how responsive the host is. They have no idea it's
+            an AI. That's the magic — it sounds just like me, but never sleeps.</p>
+          <div class="testi-author">
+            <div class="testi-avatar">SK</div>
+            <div>
+              <div class="testi-name">Simran K.</div>
+              <div class="testi-role">2 properties · Miami, FL</div>
+            </div>
+          </div>
+          <div class="testi-stars">★★★★★</div>
+          <div class="testi-badge">4.97★ avg review</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PRICING ===================== -->
+  <section class="section pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-label reveal">Pricing</div>
+      <h2 class="section-title reveal">Simple pricing.<br>Serious results.</h2>
+      <p class="section-sub reveal">Every plan includes a 14-day free trial. Cancel any time. No hidden fees.</p>
+
+      <div class="pricing-grid">
+        <!-- Starter -->
+        <div class="price-card reveal">
+          <div class="price-tier">Starter</div>
+          <div class="price-amount"><span class="price-currency">$</span>49<span class="price-period">/mo</span></div>
+          <div class="price-desc">Perfect for single-property hosts who want peace of mind.</div>
+          <ul class="price-features">
+            <li>✓ 1 property</li>
+            <li>✓ AI Chat Bot (unlimited messages)</li>
+            <li>✓ WhatsApp + Airbnb inbox</li>
+            <li>✓ Daily recap digest</li>
+            <li>✓ Standard response templates</li>
+            <li class="muted">✗ AI Calling Agent</li>
+            <li class="muted">✗ Multilingual support</li>
+          </ul>
+          <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+            class="btn btn-ghost full-width interactive">Book a Free Call</a>
+        </div>
+
+        <!-- Growth (Featured) -->
+        <div class="price-card price-featured reveal">
+          <div class="price-popular-badge">Most Popular</div>
+          <div class="price-tier">Growth</div>
+          <div class="price-amount"><span class="price-currency">$</span>129<span class="price-period">/mo</span></div>
+          <div class="price-desc">For hosts with 2–5 properties who are ready to scale.</div>
+          <ul class="price-features">
+            <li>✓ Up to 5 properties</li>
+            <li>✓ AI Chat Bot + Calling Agent</li>
+            <li>✓ All messaging platforms</li>
+            <li>✓ Daily recap + weekly report</li>
+            <li>✓ Multilingual (35+ languages)</li>
+            <li>✓ Custom brand voice training</li>
+            <li>✓ Priority support</li>
+          </ul>
+          <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+            class="btn btn-primary full-width interactive">Book a Free Call</a>
+        </div>
+
+        <!-- Scale -->
+        <div class="price-card reveal">
+          <div class="price-tier">Scale</div>
+          <div class="price-amount"><span class="price-currency">$</span>249<span class="price-period">/mo</span></div>
+          <div class="price-desc">For serious hosts with 6–10 properties and high-volume needs.</div>
+          <ul class="price-features">
+            <li>✓ Up to 10 properties</li>
+            <li>✓ AI Chat Bot + Calling Agent</li>
+            <li>✓ All platforms + SMS</li>
+            <li>✓ Full analytics dashboard</li>
+            <li>✓ Advanced brand voice AI</li>
+            <li>✓ Dedicated success manager</li>
+            <li>✓ API access + webhooks</li>
+          </ul>
+          <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+            class="btn btn-ghost full-width interactive">Book a Free Call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section faq-section" id="faq">
+    <div class="container">
+      <div class="section-label reveal">FAQ</div>
+      <h2 class="section-title reveal">Questions hosts ask.<br>Answered honestly.</h2>
+
+      <div class="faq-grid">
+        <div class="faq-card reveal">
+          <h4>How does AllianzaAI learn my property details?</h4>
+          <p>During setup, you fill in a property knowledge form — house rules, check-in info, WiFi, parking, local
+            tips. Our team helps you complete it in under 30 minutes.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>Will guests know they're talking to an AI?</h4>
+          <p>Only if you want them to. Most hosts keep it transparent by having the AI mention it upfront. Either way,
+            guests consistently rate the experience as excellent.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>What happens when the AI doesn't know the answer?</h4>
+          <p>It sends a polite message letting the guest know you'll follow up shortly, then alerts you via push
+            notification with full context. You step in only when it truly matters.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>Does it work with VRBO and other platforms?</h4>
+          <p>Yes. AllianzaAI works with Airbnb, VRBO, Booking.com, direct bookings, WhatsApp, SMS, email, and Messenger.
+            One AI, all your channels.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>How long does setup take?</h4>
+          <p>Our white-glove onboarding team handles everything. From signup to going live is typically 48 hours or
+            less. You don't touch any code or settings.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>Can I review conversations or override responses?</h4>
+          <p>Absolutely. You have full access to every conversation in your dashboard. You can edit, override, or take
+            over any chat at any time with one click.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>Is there a free trial?</h4>
+          <p>Yes — every plan includes a 14-day free trial with no credit card required. You only pay if you love it,
+            which hosts consistently do.</p>
+        </div>
+        <div class="faq-card reveal">
+          <h4>What languages does AllianzaAI support?</h4>
+          <p>35+ languages including English, Spanish, French, German, Italian, Portuguese, Japanese, Mandarin, and
+            more. Language detection is automatic.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="section final-cta-section" id="final-cta">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="final-cta-inner reveal">
+        <div class="section-label">Ready to Sleep In?</div>
+        <h2 class="final-cta-headline">Your guests deserve instant answers.<br>You deserve <em
+            class="accent-word">uninterrupted sleep.</em></h2>
+        <p class="final-cta-sub">Join 500+ Airbnb hosts who've handed their inbox to AllianzaAI and never looked back.
+        </p>
+        <div class="final-cta-btns">
+          <a href="https://calendly.com/komal-allianzaai/30min" target="_blank" rel="noopener"
+            class="btn btn-primary btn-lg interactive">Book Your Free Call</a>
+          <a href="#demo" class="btn btn-ghost btn-lg interactive">Watch the Demo</a>
+        </div>
+        <div class="white-glove">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e63030" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Our team sets everything up within 48 hours — you don't lift a finger.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <span class="logo-main">Allianza</span><span class="logo-ai">AI</span>
+          </a>
+          <p class="footer-tagline">The guest experience layer for Airbnb hosts. You sleep. Your guests are taken care
+            of.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link interactive" aria-label="Twitter">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a href="#" class="social-link interactive" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#features">AI Chat Bot</a>
+          <a href="#features">AI Calling Agent</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#demo">Live Demo</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+          <a href="#">Contact</a>
+          <a href="https://admin.allianzaai.com"
+            style="color:var(--accent);font-weight:600;margin-top:8px;display:inline-flex;align-items:center;gap:5px">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+            Admin Dashboard
+          </a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">GDPR</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 AllianzaAI. All rights reserved.</span>
+        <span>Made for hosts who love their sleep ❤️</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
