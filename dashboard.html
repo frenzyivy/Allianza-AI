@@ -113,15 +113,27 @@
                 </div>
             </nav>
             <div class="sidebar-bottom">
-                <div class="sidebar-user">
+                <div class="sidebar-user" id="userMenuBtn" style="padding: 8px; margin: -8px;">
                     <div class="user-avatar">YO</div>
                     <div>
                         <div class="user-name">Komal (You)</div>
                         <div class="user-role">Super Admin</div>
                     </div>
+                    <!-- User Profile Dropdown -->
+                    <div class="user-dropdown" id="userDropdown">
+                        <div class="dropdown-header" onclick="event.stopPropagation();">
+                            <div style="font-weight:700">Komal</div>
+                            <div style="font-size:0.75rem; color:var(--text-muted)">komal@allianzaai.com</div>
+                        </div>
+                        <div class="dropdown-item"
+                            onclick="event.stopPropagation(); navigateTo('settings'); document.getElementById('userDropdown').classList.remove('active')">
+                            👤 My Profile</div>
+                        <div class="dropdown-item"
+                            onclick="event.stopPropagation(); document.getElementById('inviteModal').classList.add('active'); document.getElementById('userDropdown').classList.remove('active')">
+                            ➕ Add / Invite User</div>
+                    </div>
                 </div>
-                <button class="logout-btn"
-                    onclick="localStorage.removeItem('allianza_admin_logged_in'); window.location.replace('login.html');">
+                <button class="logout-btn" id="logoutBtn">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
                         <polyline points="16 17 21 12 16 7" />
@@ -145,6 +157,12 @@
                     <input type="text" placeholder="Search clients, AI instances…" />
                 </div>
                 <div class="navbar-actions">
+                    <button class="badge badge-accent" id="dataModeBtn"
+                        style="cursor:pointer; font-weight:700; border:none; padding:8px 14px; margin-right:12px; display:flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif; transition:all 0.2sease">
+                        <span class="pulse pulse-grey" id="dataModePulse"
+                            style="width:8px;height:8px;border-radius:50%;display:inline-block"></span>
+                        <span id="dataModeText">Demo Mode</span>
+                    </button>
                     <button class="icon-btn" title="Notifications"><svg viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="2">
                             <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
@@ -477,6 +495,52 @@
                 </div>
 
             </main>
+        </div>
+    </div>
+
+    <!-- INVITE USER MODAL -->
+    <div class="modal-overlay" id="inviteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Invite New User</h3>
+                <button class="modal-close"
+                    onclick="document.getElementById('inviteModal').classList.remove('active')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="margin-bottom:1.5rem">
+                    <label
+                        style="display:block;margin-bottom:.5rem;font-size:.85rem;color:var(--text-muted);font-weight:600">Email
+                        Address</label>
+                    <input type="email" placeholder="colleague@company.com"
+                        style="width:100%;padding:.9rem 1.2rem;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:1rem;box-sizing:border-box" />
+                </div>
+                <div style="margin-bottom:1rem;font-size:.85rem;color:var(--text-muted);font-weight:600">Select
+                    Dashboards to Share</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:1.5rem">
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" checked /> Overview</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> Clients</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> AI Monitor</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> Financials</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> API Connections</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> My Team</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> Alerts</label>
+                    <label style="display:flex;align-items:center;gap:8px;font-size:.85rem;cursor:pointer"><input
+                            type="checkbox" /> Settings</label>
+                </div>
+                <button
+                    style="width:100%;padding:1rem;background:var(--accent);color:white;border:none;border-radius:10px;font-weight:600;font-size:1rem;font-family:inherit;cursor:pointer;transition:all 0.2s ease"
+                    onmouseover="this.style.transform='translateY(-2px)';"
+                    onmouseout="this.style.transform='translateY(0)';"
+                    onclick="alert('Invitation sent securely to user email!'); document.getElementById('inviteModal').classList.remove('active')">Send
+                    Invite</button>
+            </div>
         </div>
     </div>
     <script src="dashboard-data.js"></script>

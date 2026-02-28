@@ -156,7 +156,7 @@ h4 {
     flex-direction: column;
     z-index: 100;
     transition: var(--transition);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .sidebar-logo {
@@ -2101,5 +2101,130 @@ tbody tr:hover {
 
     .kanban {
         grid-template-columns: 1fr;
+    }
+}
+
+/* --- USER DROPDOWN & MODAL --- */
+.sidebar-user {
+    cursor: pointer;
+    position: relative;
+    border-radius: var(--radius-sm);
+    transition: var(--transition);
+}
+
+.sidebar-user:hover {
+    background: var(--surface-2);
+}
+
+.user-dropdown {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 0;
+    width: 220px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-accent);
+    padding: 8px;
+    display: none;
+    z-index: 100;
+}
+
+.user-dropdown.active {
+    display: block;
+    animation: fadeIn 0.15s ease-out;
+}
+
+.dropdown-header {
+    padding: 8px 12px 12px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 8px;
+}
+
+.dropdown-item {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dropdown-item:hover {
+    background: var(--accent-glow);
+    color: var(--accent);
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-light);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-family: 'Fraunces', serif;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-close:hover {
+    color: var(--red);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
